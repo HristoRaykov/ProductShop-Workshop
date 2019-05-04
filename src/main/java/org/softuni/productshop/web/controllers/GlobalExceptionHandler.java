@@ -11,18 +11,18 @@ import java.sql.SQLIntegrityConstraintViolationException;
 @ControllerAdvice
 public class GlobalExceptionHandler extends BaseController {
 
-    @ExceptionHandler({Throwable.class})
-    public ModelAndView handleSqlException(Throwable e) {
-        ModelAndView modelAndView = new ModelAndView("error");
+	@ExceptionHandler({ Throwable.class })
+	public ModelAndView handleSqlException(Throwable e) {
+		ModelAndView modelAndView = new ModelAndView("error");
 
-        Throwable throwable = e;
+		Throwable throwable = e;
 
-        while (throwable.getCause() != null) {
-            throwable = throwable.getCause();
-        }
+		while (throwable.getCause() != null) {
+			throwable = throwable.getCause();
+		}
 
-        modelAndView.addObject("message", throwable.getMessage());
+		modelAndView.addObject("message", throwable.getMessage());
 
-        return modelAndView;
-    }
+		return modelAndView;
+	}
 }
